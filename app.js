@@ -1,5 +1,14 @@
 var express = require('express');
 var path = require ('path');
+const mongoose = require('mongoose');
+
+//db connect
+mongoose.connect('mongodb+srv://Admin:Admin@firstcluster.hqarp.mongodb.net/projectsite?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('Connected to database');
+});
 
 //Init
 var app = express();
