@@ -42,11 +42,9 @@ app.use(function (req, res, next) {
 });
 
 //Setting Routes
-var pages = require('.routes/pages.js');
-var admin = require('.routes/adminPages.js');
+var pages = require('./routes/pages.js');
 
 app.use('/', pages);
-app.use('/admin/pages', admin);
 
 //Server start
 var port = 3000;
