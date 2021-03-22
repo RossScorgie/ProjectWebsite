@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //Public folder setup
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 //Body parser for urlencoded and json
 app.use(bodyParser.urlencoded({ extended: false }));

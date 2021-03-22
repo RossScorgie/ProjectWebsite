@@ -2,4 +2,54 @@
 
 <h1>Register</h1>
 
+<section class="container">
+            <!--Create register form-->
+            <div id="register-form">
+                <form action="/doregister" onsubmit="return Register();" method="post">
+                    <div class="register_form">
+                        <!--Create username label-->
+                        <label for="username" id="username_lbl">Username:</label>
+                        <!--Create username input field-->
+                        <input type="text"
+                               id="usernameBox"
+                               name="username"
+                               size="50"
+                               style="font-family:Arial;font-style:normal;font-weight:normal;font-size:18px;">
+                    </div>
+                    <div class="register_form">
+                        <!--Create email label-->
+                        <label for="email" id="register_email_lbl">E-mail: </label>
+                        <!--Create input field-->
+                        <input type="text"
+                               id="emailBox"
+                               name="email"
+                               size="50"
+                               style="font-family:Arial;font-style:normal;font-weight:normal;font-size:18px;">
+                    </div>
+                    <div class="register_form">
+                        <!--Create password label-->
+                        <label for="registerPassword" id="pwd_lbl">Password: </label>
+                        <!--Create password input field-->
+                        <input type="password"
+                               id="registerPasswordBox"
+                               name="password"
+                               size="50"
+                               style="font-family:Arial;font-style:normal;font-weight:normal;font-size:18px;">
+                    </div>
+                    <div class="register_form">
+                        <!--Create confirm password label-->
+                        <label for="registerConfirm" id="con_pwd_lbl">Confirm Password:</label>
+                        <!--Create confirm password input field-->
+                        <input type="password"
+                               id="registerConfirmBox"
+                               name="con_password"
+                               size="50"
+                               style="font-family:Arial;font-style:normal;font-weight:normal;font-size:18px;">
+                    </div>
+                    <!--Create update button-->
+                    <input id="submit" type="submit" value="Register">
+                </form>
+            </div>
+        </section>
+
 <%- include ("_layouts/footer") %>
