@@ -3,6 +3,7 @@ var path = require ('path');
 const mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 var session = require('express-session')
+var MongoStore = require('connect-mongo');
 
 //db connect
 mongoose.connect('mongodb+srv://Admin:Admin@firstcluster.hqarp.mongodb.net/projectsite?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
@@ -28,9 +29,13 @@ app.use(bodyParser.json());
 
 //Express session
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
+  secret: 'drink',
+  resave: true,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: 'mongodb+srv://Admin:Admin@firstcluster.hqarp.mongodb.net/projectsite?retryWrites=true&w=majority',
+    dbName: 'projectsite'
+  }),
   cookie: { secure: true }
 }))
 
@@ -43,8 +48,12 @@ app.use(function (req, res, next) {
 
 //Setting Routes
 var pages = require('./routes/pages.js');
+var user = require('./models/user.js');
+var index = require('./routes/index');
 
+app.use('/', index);
 app.use('/', pages);
+
 
 //Server start
 var port = 3000;

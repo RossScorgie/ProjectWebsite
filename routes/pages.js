@@ -18,5 +18,9 @@ router.get('/abtest', function(req, res) {
     res.render('abTest');
 });
 
+router.get('/login', function(req, res) {
+    res.render('login');
+});
+
 //Exporting
 module.exports = router; 
