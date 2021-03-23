@@ -62,14 +62,11 @@ router.get('/login', function (req, res, next) {
 });
 
 router.post('/login', function (req, res, next) {
-	//console.log(req.body);
 	User.findOne({email:req.body.email},function(err,data){
 		if(data){
 			
 			if(data.password==req.body.password){
-				//console.log("Done Login");
 				req.session.userId = data.unique_id;
-				//console.log(req.session.userId);
 				res.send({"Success":"Success!"});
 				
 			}else{
@@ -77,20 +74,6 @@ router.post('/login', function (req, res, next) {
 			}
 		}else{
 			res.send({"Success":"This Email Is not regestered!"});
-		}
-	});
-});
-
-router.get('/account', function (req, res, next) {
-	console.log("account");
-	User.findOne({unique_id:req.session.userId},function(err,data){
-		console.log("data");
-		console.log(data);
-		if(!data){
-			res.redirect('/');
-		}else{
-			//console.log("found");
-			return res.render('account.ejs', {"name":data.username,"email":data.email});
 		}
 	});
 });
@@ -108,5 +91,6 @@ router.get('/logout', function (req, res, next) {
     });
 }
 });
+
 
 module.exports = router;

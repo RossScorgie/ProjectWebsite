@@ -10,10 +10,6 @@ router.get('/register', function(req, res) {
     res.render('register');
 });
 
-router.get('/account', function(req, res) {
-    res.render('account');
-});
-
 router.get('/abtest', function(req, res) {
     res.render('abTest');
 });

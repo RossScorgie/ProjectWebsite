@@ -49,11 +49,54 @@ app.use(function (req, res, next) {
 //Setting Routes
 var pages = require('./routes/pages.js');
 var user = require('./models/user.js');
+var votes = require('./models/test.js');
 var index = require('./routes/index');
 
 app.use('/', index);
 app.use('/', pages);
 
+//Adding clicks to db
+app.post('/teaClick', (req, res) => {
+  const click = {clickTime: new Date()};
+  console.log(click);
+  console.log(db);
+
+  db.collection('tea').save(click, (err, result) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('click added to db');
+    res.sendStatus(201);
+  });
+});
+
+app.post('/coffeeClick', (req, res) => {
+  const click = {clickTime: new Date()};
+  console.log(click);
+  console.log(db);
+
+  db.collection('coffee').save(click, (err, result) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('click added to db');
+    res.sendStatus(201);
+  });
+});
+
+app.post('/chocoClick', (req, res) => {
+  const click = {clickTime: new Date()};
+  console.log(click);
+  console.log(db);
+
+  db.collection('chocolate').save(click, (err, result) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('click added to db');
+    res.sendStatus(201);
+  });
+});
 
 //Server start
 var port = 3000;

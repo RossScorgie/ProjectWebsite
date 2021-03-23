@@ -3,12 +3,10 @@ var Schema = mongoose.Schema;
 
 userSchema = new Schema( {
 	
-	unique_id: Number,
-	email: String,
-	username: String,
-	password: String,
-	passwordConf: String
+	tea: Number,
+        coffee: Number,
+        chocolate: Number
 }),
-user = mongoose.model('users', userSchema);
+user = mongoose.model('abTest', userSchema);
 
 module.exports = user;
