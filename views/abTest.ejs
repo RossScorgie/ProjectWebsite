@@ -2,4 +2,59 @@
 
 <h1>Dashboard</h1>
 
+<!--Load data from the database-->
+<p id="teaCount">Loading...</p>
+
+<p id="coffeeCount">Loading...</p>
+
+<p id="chocoCount">Loading...</p>
+
+<!--Script to get results from db-->
+<script>
+    //Gets reeults from tea collection
+    setInterval(function() {
+        fetch('/teaClick', {method: 'GET'})
+        .then(function(response) {
+      if(response.ok) return response.json();
+      throw new Error('Request failed.');
+    })
+    .then(function(data) {
+      document.getElementById('teaCount').innerHTML = `Tea was clicked ${data.length} times`;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}, 1000);
+
+//Gets reeults from coffee collection
+setInterval(function() {
+        fetch('/coffeeClick', {method: 'GET'})
+        .then(function(response) {
+      if(response.ok) return response.json();
+      throw new Error('Request failed.');
+    })
+    .then(function(data) {
+      document.getElementById('coffeeCount').innerHTML = `Coffee was clicked ${data.length} times`;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}, 1000);
+
+//Gets reeults from chocolate collection
+setInterval(function() {
+        fetch('/chocoClick', {method: 'GET'})
+        .then(function(response) {
+      if(response.ok) return response.json();
+      throw new Error('Request failed.');
+    })
+    .then(function(data) {
+      document.getElementById('chocoCount').innerHTML = `Choco was clicked ${data.length} times`;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}, 1000);
+</script>
+
 <%- include ("_layouts/footer") %>

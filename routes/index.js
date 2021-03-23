@@ -1,20 +1,23 @@
+//Declaring variables
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 
+//Gets register
 router.get('/', function (req, res, next) {
 	return res.render('index.ejs');
 });
 
-
+//Main functiuon for registering new users
 router.post('/', function(req, res, next) {
 	console.log(req.body);
 	var personInfo = req.body;
 
-
+        //Checks if any of the user inputs are already registered
 	if(!personInfo.email || !personInfo.username || !personInfo.password || !personInfo.passwordConf){
 		res.send();
 	} else {
+            //Checks to makes sure password is the same as the confirm
 		if (personInfo.password == personInfo.passwordConf) {
 
 			User.findOne({email:personInfo.email},function(err,data){
@@ -28,7 +31,8 @@ router.post('/', function(req, res, next) {
 						}else{
 							c=1;
 						}
-
+                                                
+                                                //Uses scheme to create new user
 						var newPerson = new User({
 							unique_id:c,
 							email:personInfo.email,
@@ -36,7 +40,8 @@ router.post('/', function(req, res, next) {
 							password: personInfo.password,
 							passwordConf: personInfo.passwordConf
 						});
-
+                                                
+                                                //Will print success if new user has been added
 						newPerson.save(function(err, Person){
 							if(err)
 								console.log(err);
@@ -51,16 +56,19 @@ router.post('/', function(req, res, next) {
 				}
 
 			});
+                //Error message
 		}else{
 			res.send({"Success":"password is not matched"});
 		}
 	}
-});
+});;
 
+//Gets login
 router.get('/login', function (req, res, next) {
 	return res.render('login.ejs');
 });
 
+//Main login function
 router.post('/login', function (req, res, next) {
 	User.findOne({email:req.body.email},function(err,data){
 		if(data){
@@ -78,6 +86,7 @@ router.post('/login', function (req, res, next) {
 	});
 });
 
+//Logout function 
 router.get('/logout', function (req, res, next) {
 	console.log("logout")
 	if (req.session) {
@@ -91,6 +100,5 @@ router.get('/logout', function (req, res, next) {
     });
 }
 });
-
 
 module.exports = router;

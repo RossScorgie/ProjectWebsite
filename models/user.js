@@ -1,12 +1,17 @@
+//Declaring variables
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+//Creates new schema for collections
 userSchema = new Schema( {
 	
-	tea: Number,
-        coffee: Number,
-        chocolate: Number
+	unique_id: Number,
+	email: String,
+	username: String,
+	password: String,
+	passwordConf: String
 }),
-user = mongoose.model('abTest', userSchema);
+//Stores new users in teh user collections
+user = mongoose.model('users', userSchema);
 
 module.exports = user;

@@ -1,5 +1,6 @@
 <%- include ("_layouts/header") %>
 
+<!--Script for registering users-->
 <script type="text/javascript">
 		$(document).ready(function(){
 			$( "#form1" ).submit(function(event) {
@@ -25,14 +26,15 @@
 			});
 		});
 	</script>
-        
+
+<!--Main Header-->        
 <h1>Register</h1>
 
 <div class="col-md-4 col-md-offset-4">
 		<div>
-			<p>Register Now
-			</p>
+			<p>Register a new account</p>
 		</div>
+                <!--Form to collect data fro registering-->
 		<div class="form-group">
 			<form id="form1" method="post">
 				<input type="email" name="email" placeholder="E-mail" required="" class="form-control"><br/>
@@ -43,9 +45,12 @@
 			</form>
 		</div>
 		
+                <!--Error message-->
 		<div class="mssg bg-danger">
 			<span id="check"></span>
 		</div>
+                
+                <!--Quick link to login-->
 		<div>
 			<span>Already Registered! <a href="/login">Login</a></span>
 		</div>

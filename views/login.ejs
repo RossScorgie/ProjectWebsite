@@ -1,20 +1,20 @@
 <%- include ("_layouts/header") %>
 
+<!--Main script for logging in-->
 <script type="text/javascript">
 		$(document).ready(function(){
+                    //When user hits submit the scripts runs
 			$( "#form" ).submit(function(event) {
 				event.preventDefault();
+                                //Gathers information user entered
 				$.ajax({
 					type: 'POST',
 					url: '/login',
 					data: $('#form').serialize(),
 					dataType: "json",
 					success: function(response){
-						//alert("a");
-						//console.log(response.Success);
 						$('#form')[0].reset();
 						document.getElementById("check").innerHTML=response.Success;
-         					//ADD THIS CODE
          					setTimeout(function(){
          						document.getElementById("check").innerHTML="";
          					},3000);
@@ -27,14 +27,16 @@
          			})
 			});
 		});
-</script>
+	</script>
         
+<!--Main header-->        
 <h1>Login</h1>
 
 <div class="col-md-4 col-md-offset-4">
 		<div>
-			<p>Login</p>
+			<p>Login to your account</p>
 		</div>
+                <!--Form to collect email and password-->
 		<div class="form-group">
 			<form id="form" method="post" >
 				<input type="text" name="email" placeholder="E-mail" required="" class="form-control"><br/>
@@ -42,13 +44,12 @@
 				<input type="submit" value="Login" class="btn btn-success">
 			</form>
 		</div>
+                <!--Error message-->
 		<div class="mssg bg-danger">
 			<span id="check" ></span>
 		</div>
 		<div id="LangTable"><a href="/" id="aa"></a>
-		</div>
-
-		
+		</div>	
 	</div>
 
 <%- include ("_layouts/footer") %>

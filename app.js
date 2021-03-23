@@ -27,7 +27,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//Express session
+//Express session with mongostore
 app.use(session({
   secret: 'drink',
   resave: true,
@@ -49,13 +49,12 @@ app.use(function (req, res, next) {
 //Setting Routes
 var pages = require('./routes/pages.js');
 var user = require('./models/user.js');
-var votes = require('./models/test.js');
-var index = require('./routes/index');
+var index = require('./routes/index.js');
 
 app.use('/', index);
 app.use('/', pages);
 
-//Adding clicks to db
+//Adding tea button clicks to db
 app.post('/teaClick', (req, res) => {
   const click = {clickTime: new Date()};
   console.log(click);
@@ -70,6 +69,7 @@ app.post('/teaClick', (req, res) => {
   });
 });
 
+//Adding coffee button clicks to db
 app.post('/coffeeClick', (req, res) => {
   const click = {clickTime: new Date()};
   console.log(click);
@@ -84,6 +84,7 @@ app.post('/coffeeClick', (req, res) => {
   });
 });
 
+//Adding Hot Chocolate button clicks to db
 app.post('/chocoClick', (req, res) => {
   const click = {clickTime: new Date()};
   console.log(click);
@@ -95,6 +96,30 @@ app.post('/chocoClick', (req, res) => {
     }
     console.log('click added to db');
     res.sendStatus(201);
+  });
+});
+
+//Gets the results from the tea collection the db
+app.get('/teaClick', (req, res) => {
+  db.collection('tea').find().toArray((err, result) => {
+    if (err) return console.log(err);
+    res.send(result);
+  });
+});
+
+//Gets the results from the coffee collection the db
+app.get('/coffeeClick', (req, res) => {
+  db.collection('coffee').find().toArray((err, result) => {
+    if (err) return console.log(err);
+    res.send(result);
+  });
+});
+
+//Gets the results from the hot chocolate collection the db
+app.get('/chocoClick', (req, res) => {
+  db.collection('chocolate').find().toArray((err, result) => {
+    if (err) return console.log(err);
+    res.send(result);
   });
 });
 

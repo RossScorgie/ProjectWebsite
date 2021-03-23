@@ -1,3 +1,4 @@
+//Regisers clicks made using tea button on the index page
 const tea = document.getElementById('Tea');
 tea.addEventListener('click', function(e) {
     console.log('button was clicked');
@@ -15,7 +16,7 @@ tea.addEventListener('click', function(e) {
     });
 });
 
-
+//Regisers clicks made using coffee button on the index page
 const coffee = document.getElementById('Coffee');
 coffee.addEventListener('click', function(e) {
   console.log('button was clicked');
@@ -33,6 +34,7 @@ coffee.addEventListener('click', function(e) {
     });
 });
 
+//Regisers clicks made using hot chocolate button on the index page
 const choco = document.getElementById('Chocolate');
 choco.addEventListener('click', function(e) {
   console.log('button was clicked');
